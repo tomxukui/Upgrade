@@ -7,6 +7,7 @@ app更新升级工具
      implementation 'com.android.support:appcompat-v7:27.1.1'
      implementation 'com.squareup.okhttp3:okhttp:3.8.1'
      implementation 'org.greenrobot:eventbus:3.1.1'
+     implementation 'com.github.tomxukui:Upgrade:1.0.0'
  }
  ```
 
