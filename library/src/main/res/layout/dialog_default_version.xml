@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="@drawable/upgrade_bg_dialog"
+    android:clickable="true"
+    android:orientation="vertical"
+    app:divider="@drawable/upgrade_divider_horizontal"
+    app:showDividers="middle">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="15dp"
+            android:gravity="left|top"
+            android:textColor="@color/upgrade_textColor_primary"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:gravity="left|top"
+            android:lineSpacingExtra="3dp"
+            android:text="更新内容如下:"
+            android:textColor="#1A1A1A"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp"
+            android:gravity="left|top"
+            android:lineSpacingExtra="3dp"
+            android:maxHeight="200dp"
+            android:minHeight="80dp"
+            android:paddingBottom="15dp"
+            android:scrollbars="vertical"
+            android:textColor="@color/upgrade_textColor_second"
+            android:textSize="15sp" />
+
+    </LinearLayout>
+
+    <android.support.v7.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:orientation="horizontal"
+        app:divider="@drawable/upgrade_divider_vertical"
+        app:showDividers="middle">
+
+        <TextView
+            android:id="@+id/tv_cancel"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.0"
+            android:background="@color/upgrade_dialog_textBackground_cancel"
+            android:gravity="center"
+            android:textColor="@color/upgrade_dialog_textColor_cancel"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_confirm"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.0"
+            android:background="@color/upgrade_dialog_textBackground_confirm"
+            android:gravity="center"
+            android:text="@string/upgrade_upgrade"
+            android:textColor="@color/upgrade_dialog_textColor_confirm"
+            android:textSize="14sp" />
+
+    </android.support.v7.widget.LinearLayoutCompat>
+
+</android.support.v7.widget.LinearLayoutCompat>

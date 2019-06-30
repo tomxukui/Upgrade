@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths>
+
+    <external-path
+        name="external_files"
+        path="/" />
+
+    <external-files-path
+        name="ext_pub"
+        path="/" />
+
+    <root-path
+        name="root_path"
+        path="/" />
+
+</paths>

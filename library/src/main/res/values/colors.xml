@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="upgrade_textColor_primary">#1A1A1A</color>
+    <color name="upgrade_textColor_second">#4C4C4C</color>
+    <color name="upgrade_textColor_third">#888888</color>
+
+    <color name="upgrade_divider">#E2E2E2</color>
+    <color name="upgrade_dialog_textBackground_confirm">#3D8CFF</color>
+    <color name="upgrade_dialog_textColor_confirm">#ffffff</color>
+    <color name="upgrade_dialog_textBackground_cancel">#ffffff</color>
+    <color name="upgrade_dialog_textColor_cancel">#888888</color>
+    <color name="upgrade_dialog_textColor_install">#3D8CFF</color>
+
+</resources>
