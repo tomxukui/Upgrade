@@ -22,7 +22,7 @@ public class DefaultDownloadingDialog extends Dialog implements DownloadingDialo
     private boolean mForce;
 
     public DefaultDownloadingDialog(@NonNull Context context) {
-        super(context, R.style.versionCheckLib_BaseDialog);
+        super(context, R.style.Upgrade_Dialog);
         setContentView(R.layout.dialog_default_downloading);
 
         initView();

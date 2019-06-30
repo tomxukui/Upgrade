@@ -23,7 +23,7 @@ public class DefaultVersionDialog extends Dialog implements VersionDialog {
     private boolean mForce;
 
     public DefaultVersionDialog(@NonNull Context context) {
-        super(context, R.style.versionCheckLib_BaseDialog);
+        super(context, R.style.Upgrade_Dialog);
     }
 
     @Override

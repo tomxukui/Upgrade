@@ -23,17 +23,17 @@
         <activity
             android:name=".ui.MaskDialogActivity"
             android:launchMode="singleTask"
-            android:theme="@style/versionCheckLibvtransparentTheme" />
+            android:theme="@style/Upgrade_NoActionBar_Transparent" />
 
         <provider
-            android:name=".utils.VersionFileProvider"
-            android:authorities="${applicationId}.versionProvider"
+            android:name=".utils.UpgradeFileProvider"
+            android:authorities="${applicationId}.upgradeProvider"
             android:exported="false"
             android:grantUriPermissions="true">
 
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/versionchecklib_file_paths" />
+                android:resource="@xml/upgrade_file_paths" />
 
         </provider>
 

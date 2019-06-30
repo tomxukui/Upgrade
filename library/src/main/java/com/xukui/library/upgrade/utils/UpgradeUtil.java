@@ -73,7 +73,7 @@ public class UpgradeUtil {
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         Uri uri;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            uri = VersionFileProvider.getUriForFile(context, context.getPackageName() + ".versionProvider", file);
+            uri = UpgradeFileProvider.getUriForFile(context, context.getPackageName() + ".upgradeProvider", file);
             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
 
         } else {

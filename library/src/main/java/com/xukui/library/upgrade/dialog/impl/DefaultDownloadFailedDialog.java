@@ -16,7 +16,7 @@ public class DefaultDownloadFailedDialog extends Dialog implements DownloadFaile
     private TextView tv_confirm;
 
     public DefaultDownloadFailedDialog(@NonNull Context context) {
-        super(context, R.style.versionCheckLib_BaseDialog);
+        super(context, R.style.Upgrade_Dialog);
     }
 
     @Override

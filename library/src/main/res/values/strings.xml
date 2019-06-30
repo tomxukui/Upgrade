@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">VersionCheckLib</string>
+    <string name="app_name">Upgrade</string>
     <string name="upgrade_downloading">正在下载中...</string>
     <string name="upgrade_download_complete">下载完成</string>
     <string name="upgrade_download_install">下载完成, 点击安装</string>

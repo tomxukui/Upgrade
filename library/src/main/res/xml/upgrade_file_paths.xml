@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <paths>
 
-    <external-path
-        name="external_files"
-        path="/" />
-
     <external-files-path
-        name="ext_pub"
-        path="/" />
+        name="efp_apks"
+        path="/apks" />
+
+    <files-path
+        name="fp_apks"
+        path="/apks" />
 
     <root-path
         name="root_path"

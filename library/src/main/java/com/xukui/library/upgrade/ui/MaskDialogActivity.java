@@ -3,10 +3,13 @@ package com.xukui.library.upgrade.ui;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.WindowManager;
 
 import com.xukui.library.upgrade.UpgradeClient;
 import com.xukui.library.upgrade.bean.UpgradeInfo;
@@ -39,6 +42,7 @@ public class MaskDialogActivity extends AppCompatActivity implements DialogInter
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        transparentStatusBar();
         EventBus.getDefault().register(this);
 
         handleIntent(getIntent());
@@ -69,6 +73,26 @@ public class MaskDialogActivity extends AppCompatActivity implements DialogInter
     public void onDownloadingProgressEvent(DownloadingProgressEvent event) {
         if (mDownloadingDialog != null && mDownloadingDialog.isShowing()) {
             mDownloadingDialog.showProgress(event.progress);
+        }
+    }
+
+    /**
+     * 使状态栏透明
+     */
+    private void transparentStatusBar() {
+        try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+                getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+                getWindow().setStatusBarColor(Color.TRANSPARENT);
+
+            } else {
+                getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
