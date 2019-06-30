@@ -11,4 +11,4 @@ app更新升级工具
  ```
 
  ## 参考
- 1. 基于[CheckVersionLib](https://github.com/AlexLiuSheng/CheckVersionLib)改造的库
+ 1. 基于[CheckVersionLib](https://github.com/AlexLiuSheng/CheckVersionLib) 改造的库
