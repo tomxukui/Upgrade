@@ -9,3 +9,6 @@ app更新升级工具
      implementation 'org.greenrobot:eventbus:3.1.1'
  }
  ```
+
+ ## 参考
+ 1. 基于CheckVersionLib(https://github.com/AlexLiuSheng/CheckVersionLib)改造的库
