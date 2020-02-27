@@ -67,7 +67,8 @@ public class MainActivity extends AppCompatActivity {
     private void sendRequest() {
         UpgradeInfo data = new UpgradeInfo();
         data.setTitle("更新提示");
-        data.setDownloadUrl("http://test-1251233192.coscd.myqcloud.com/1_1.apk");
+//        data.setDownloadUrl("http://test-1251233192.coscd.myqcloud.com/1_1.apk");
+        data.setDownloadUrl("http://60.190.88.124:13700/api/console/appgl/downloadApp.service?appid=5e566daac6106700011ff539");
         data.setContent(getString(R.string.updatecontent));
         data.setForce(cb_force.isChecked());
 
