@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.WindowManager;
 
+import com.xukui.library.upgrade.R;
 import com.xukui.library.upgrade.UpgradeClient;
 import com.xukui.library.upgrade.bean.UpgradeInfo;
 import com.xukui.library.upgrade.builder.DownloadBuilder;
@@ -66,7 +67,7 @@ public class MaskDialogActivity extends AppCompatActivity implements DialogInter
     @Override
     public void finish() {
         super.finish();
-        overridePendingTransition(0, 0);
+        overridePendingTransition(R.anim.no_anim, R.anim.no_anim);
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
