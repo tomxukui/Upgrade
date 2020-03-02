@@ -38,7 +38,7 @@ public class CustomDownloadingDialog extends Dialog implements DownloadingDialog
     }
 
     @Override
-    public void showProgress(int progress) {
+    public void showProgress(int progress, long currentLength) {
         bar_progress.setProgress(progress);
     }
 

@@ -6,7 +6,7 @@ public interface OnCheckDownloadListener {
 
     void onCheckerStartDownload();
 
-    void onCheckerDownloading(int progress);
+    void onCheckerDownloading(int progress, long currentLength);
 
     void onCheckerDownloadSuccess(File file);
 

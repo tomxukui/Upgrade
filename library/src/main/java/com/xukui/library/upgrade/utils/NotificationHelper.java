@@ -126,14 +126,24 @@ public class NotificationHelper {
     /**
      * 更新下载进度的通知
      */
-    public void updateDownloadProgressNotification(int progress) {
-        if ((progress - mCurrentProgress) > 5) {
-            mBuilder.setContentText(String.format(mContentText, progress));
-            mBuilder.setProgress(100, progress, false);
+    public void updateDownloadProgressNotification(int progress, long currentLength) {
+        if (progress < 0) {
+            mBuilder.setContentText("正在下载:" + ConvertUtil.byte2FitMemorySize(currentLength));
+            mBuilder.setProgress(100, progress, true);
             mBuilder.setContentIntent(null);
 
             mManager.notify(NOTIFICATION_ID, mBuilder.build());
             mCurrentProgress = progress;
+
+        } else {
+            if (Math.abs(progress - mCurrentProgress) > 5) {
+                mBuilder.setContentText(String.format(mContentText, progress));
+                mBuilder.setProgress(100, progress, false);
+                mBuilder.setContentIntent(null);
+
+                mManager.notify(NOTIFICATION_ID, mBuilder.build());
+                mCurrentProgress = progress;
+            }
         }
     }
 

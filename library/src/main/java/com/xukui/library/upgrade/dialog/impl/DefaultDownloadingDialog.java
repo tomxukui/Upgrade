@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.xukui.library.upgrade.R;
 import com.xukui.library.upgrade.dialog.DownloadingDialog;
+import com.xukui.library.upgrade.utils.ConvertUtil;
 import com.xukui.library.upgrade.utils.UpgradeUtil;
 
 public class DefaultDownloadingDialog extends Dialog implements DownloadingDialog {
@@ -56,19 +57,31 @@ public class DefaultDownloadingDialog extends Dialog implements DownloadingDialo
     }
 
     @Override
-    public void showProgress(int progress) {
+    public void showProgress(int progress, long currentLength) {
         if (!isShowing()) {
             show();
         }
 
         if (bar_progress != null) {
-            bar_progress.setProgress(progress);
+            if (progress < 0) {
+                bar_progress.setIndeterminate(true);
+
+            } else {
+                bar_progress.setIndeterminate(false);
+                bar_progress.setProgress(progress);
+            }
         }
         if (tv_status != null) {
             tv_status.setText(progress < 100 ? R.string.upgrade_downloading : R.string.upgrade_download_complete);
         }
         if (tv_progress != null) {
-            tv_progress.setText(String.format(UpgradeUtil.getString(R.string.upgrade_progress), progress));
+            if (progress < 0) {
+                String fileLength = ConvertUtil.byte2FitMemorySize(currentLength);
+                tv_progress.setText(fileLength);
+
+            } else {
+                tv_progress.setText(String.format(UpgradeUtil.getString(R.string.upgrade_progress), progress));
+            }
         }
         if (tv_install != null) {
             tv_install.setVisibility(progress < 100 ? View.GONE : View.VISIBLE);

@@ -26,6 +26,8 @@ import okhttp3.Response;
 
 public class UpgradeUtil {
 
+    private static Handler mHandler;
+
     /**
      * 获取包名
      */
@@ -121,20 +123,26 @@ public class UpgradeUtil {
         return Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED);
     }
 
+    private static Handler getHandler() {
+        if (mHandler == null) {
+            mHandler = new Handler(Looper.getMainLooper());
+        }
+
+        return mHandler;
+    }
+
     /**
      * 下载apk
      */
     public static void download(final String url, final String fileDir, final String fileName, final OnCheckDownloadListener listener) {
         if (url != null && !url.isEmpty()) {
-            Handler handler = new Handler(Looper.getMainLooper());
-
             Request request = new Request
                     .Builder()
                     .addHeader("Accept-Encoding", "identity")
                     .url(url)
                     .build();
 
-            handler.post(new Runnable() {
+            getHandler().post(new Runnable() {
 
                 @Override
                 public void run() {
@@ -145,11 +153,11 @@ public class UpgradeUtil {
 
             });
 
-            HttpClient.getHttpClient().newCall(request).enqueue(new FileCallBack(handler, fileDir, fileName) {
+            HttpClient.getHttpClient().newCall(request).enqueue(new FileCallBack(fileDir, fileName) {
 
                 @Override
                 public void onSuccess(final File file, Call call, Response response) {
-                    getHandle().post(new Runnable() {
+                    getHandler().post(new Runnable() {
 
                         @Override
                         public void run() {
@@ -162,13 +170,13 @@ public class UpgradeUtil {
                 }
 
                 @Override
-                public void onDownloading(final int progress) {
-                    getHandle().post(new Runnable() {
+                public void onDownloading(final int progress, final long currentLength) {
+                    getHandler().post(new Runnable() {
 
                         @Override
                         public void run() {
                             if (listener != null) {
-                                listener.onCheckerDownloading(progress);
+                                listener.onCheckerDownloading(progress, currentLength);
                             }
                         }
 
@@ -177,7 +185,7 @@ public class UpgradeUtil {
 
                 @Override
                 public void onDownloadFailed() {
-                    getHandle().post(new Runnable() {
+                    getHandler().post(new Runnable() {
 
                         @Override
                         public void run() {

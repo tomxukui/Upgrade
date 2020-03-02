@@ -9,8 +9,8 @@ import android.support.annotation.Nullable;
 import android.support.annotation.WorkerThread;
 
 import com.xukui.library.upgrade.callback.OnCheckDownloadListener;
-import com.xukui.library.upgrade.http.HttpClient;
 import com.xukui.library.upgrade.event.DownloadingProgressEvent;
+import com.xukui.library.upgrade.http.HttpClient;
 import com.xukui.library.upgrade.event.UpgradeEvent;
 import com.xukui.library.upgrade.ui.MaskDialogActivity;
 import com.xukui.library.upgrade.utils.UpgradeUtil;
@@ -139,13 +139,6 @@ public class VersionService extends Service {
     }
 
     /**
-     * 更新下载进度
-     */
-    private void updateDownloadingDialogProgress(int progress) {
-        EventBus.getDefault().post(new DownloadingProgressEvent(progress));
-    }
-
-    /**
      * 显示下载失败对话框
      */
     private void showDownloadFailedDialog() {
@@ -209,21 +202,21 @@ public class VersionService extends Service {
             }
 
             @Override
-            public void onCheckerDownloading(int progress) {
+            public void onCheckerDownloading(int progress, long currentLength) {
                 if (!mIsServiceAlive) {
                     return;
                 }
 
                 if (mNotificationHelper != null) {
-                    mNotificationHelper.updateDownloadProgressNotification(progress);
+                    mNotificationHelper.updateDownloadProgressNotification(progress, currentLength);
                 }
 
                 if (!mDownloadBuilder.isSilentDownload()) {
-                    updateDownloadingDialogProgress(progress);
+                    EventBus.getDefault().post(new DownloadingProgressEvent(progress, currentLength));
                 }
 
                 if (mDownloadBuilder.getOnDownloadListener() != null) {
-                    mDownloadBuilder.getOnDownloadListener().onDownloading(progress);
+                    mDownloadBuilder.getOnDownloadListener().onDownloading(progress, currentLength);
                 }
             }
 
@@ -237,6 +230,10 @@ public class VersionService extends Service {
 
                 if (mNotificationHelper != null) {
                     mNotificationHelper.showDownloadCompleteNotifcation(file);
+                }
+
+                if (!mDownloadBuilder.isSilentDownload()) {
+                    EventBus.getDefault().post(new DownloadingProgressEvent(100, file.length()));
                 }
 
                 if (mDownloadBuilder.getOnDownloadListener() != null) {

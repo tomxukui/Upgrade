@@ -73,7 +73,7 @@ public class MaskDialogActivity extends AppCompatActivity implements DialogInter
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onDownloadingProgressEvent(DownloadingProgressEvent event) {
         if (mDownloadingDialog != null && mDownloadingDialog.isShowing()) {
-            mDownloadingDialog.showProgress(event.progress);
+            mDownloadingDialog.showProgress(event.progress, event.currentLength);
         }
     }
 

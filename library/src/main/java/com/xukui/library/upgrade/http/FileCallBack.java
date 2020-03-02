@@ -1,7 +1,5 @@
 package com.xukui.library.upgrade.http;
 
-import android.os.Handler;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -16,24 +14,14 @@ public abstract class FileCallBack implements Callback {
     private String mPath;
     private String mName;
 
-    private Handler mHandler;
-
-    public FileCallBack(Handler handler, String path, String name) {
-        mHandler = handler;
+    public FileCallBack(String path, String name) {
         mPath = path;
         mName = name;
     }
 
     @Override
     public void onFailure(Call call, IOException e) {
-        mHandler.post(new Runnable() {
-
-            @Override
-            public void run() {
-                onDownloadFailed();
-            }
-
-        });
+        onDownloadFailed();
     }
 
     @Override
@@ -65,40 +53,19 @@ public abstract class FileCallBack implements Callback {
                 long total = response.body().contentLength();
                 fos.write(buf, 0, len);
                 sum += len;
-                final int progress = (int) (((double) sum / total) * 100);
+                int progress = (total < 0 ? -1 : ((int) (((double) sum / total) * 100)));
 
-                mHandler.post(new Runnable() {
-
-                    @Override
-                    public void run() {
-                        onDownloading(progress);
-                    }
-
-                });
+                onDownloading(progress, sum);
             }
 
             fos.flush();
 
-            mHandler.post(new Runnable() {
-
-                @Override
-                public void run() {
-                    onSuccess(file, call, response);
-                }
-
-            });
+            onSuccess(file, call, response);
 
         } catch (Exception e) {
             e.printStackTrace();
 
-            mHandler.post(new Runnable() {
-
-                @Override
-                public void run() {
-                    onDownloadFailed();
-                }
-
-            });
+            onDownloadFailed();
 
         } finally {
             try {
@@ -115,13 +82,9 @@ public abstract class FileCallBack implements Callback {
         }
     }
 
-    public Handler getHandle() {
-        return mHandler;
-    }
-
     public abstract void onSuccess(File file, Call call, Response response);
 
-    public abstract void onDownloading(int progress);
+    public abstract void onDownloading(int progress, long currentLength);
 
     public abstract void onDownloadFailed();
 
