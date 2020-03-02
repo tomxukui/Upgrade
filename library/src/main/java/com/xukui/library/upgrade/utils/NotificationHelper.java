@@ -31,6 +31,7 @@ public class NotificationHelper {
     private NotificationCompat.Builder mBuilder;
 
     private int mCurrentProgress;
+    private long mCurrentLength;
     private int mSmallIcon;
     private boolean mIsRingtone;
     private String mContentTitle;
@@ -40,6 +41,7 @@ public class NotificationHelper {
     public NotificationHelper(NotificationBuilder notificationBuilder) {
         mManager = (NotificationManager) UpgradeClient.getInstance().getContext().getSystemService(NOTIFICATION_SERVICE);
         mCurrentProgress = 0;
+        mCurrentLength = 0;
 
         mSmallIcon = notificationBuilder.getIcon();
         mIsRingtone = notificationBuilder.isRingtone();
@@ -112,6 +114,7 @@ public class NotificationHelper {
      */
     public void showDownloadingNotification() {
         mCurrentProgress = 0;
+        mCurrentLength = 0;
 
         mBuilder.setContentTitle(mContentTitle);
         mBuilder.setTicker(mTicker);
@@ -128,15 +131,17 @@ public class NotificationHelper {
      */
     public void updateDownloadProgressNotification(int progress, long currentLength) {
         if (progress < 0) {
-            mBuilder.setContentText("正在下载:" + ConvertUtil.byte2FitMemorySize(currentLength));
-            mBuilder.setProgress(100, progress, true);
-            mBuilder.setContentIntent(null);
+            if (Math.abs(currentLength - mCurrentLength) >= (1024 * 100)) {
+                mBuilder.setContentText("正在下载:" + ConvertUtil.byte2FitMemorySize(currentLength));
+                mBuilder.setProgress(100, progress, true);
+                mBuilder.setContentIntent(null);
 
-            mManager.notify(NOTIFICATION_ID, mBuilder.build());
-            mCurrentProgress = progress;
+                mManager.notify(NOTIFICATION_ID, mBuilder.build());
+                mCurrentLength = currentLength;
+            }
 
         } else {
-            if (Math.abs(progress - mCurrentProgress) > 5) {
+            if (Math.abs(progress - mCurrentProgress) >= 5) {
                 mBuilder.setContentText(String.format(mContentText, progress));
                 mBuilder.setProgress(100, progress, false);
                 mBuilder.setContentIntent(null);
@@ -152,6 +157,7 @@ public class NotificationHelper {
      */
     public void showDownloadCompleteNotifcation(File file) {
         mCurrentProgress = 100;
+        mCurrentLength = file.length();
 
         Intent intent = UpgradeUtil.buildInstallApkIntent(file);
         PendingIntent pendingIntent = PendingIntent.getActivity(UpgradeClient.getInstance().getContext(), 0, intent, 0);
@@ -169,6 +175,7 @@ public class NotificationHelper {
      */
     public void showDownloadFailedNotification() {
         mCurrentProgress = 0;
+        mCurrentLength = 0;
 
         Intent intent = new MaskDialogActivity.Builder(UpgradeClient.getInstance().getContext())
                 .setDownloadFailedType()
