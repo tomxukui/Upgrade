@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
-import android.support.v4.app.NotificationCompat;
 
 import com.xukui.library.upgrade.R;
 import com.xukui.library.upgrade.builder.NotificationBuilder;
@@ -16,6 +15,8 @@ import com.xukui.library.upgrade.ui.MaskDialogActivity;
 import com.xukui.library.upgrade.UpgradeClient;
 
 import java.io.File;
+
+import androidx.core.app.NotificationCompat;
 
 import static android.app.PendingIntent.FLAG_UPDATE_CURRENT;
 import static android.content.Context.NOTIFICATION_SERVICE;

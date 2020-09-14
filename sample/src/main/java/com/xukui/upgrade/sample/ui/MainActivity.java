@@ -1,7 +1,6 @@
 package com.xukui.upgrade.sample.ui;
 
 import android.content.Context;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.Button;
@@ -23,6 +22,8 @@ import com.xukui.library.upgrade.callback.OnRequestVersionListener;
 import com.xukui.library.upgrade.dialog.DownloadFailedDialog;
 import com.xukui.library.upgrade.dialog.DownloadingDialog;
 import com.xukui.library.upgrade.dialog.VersionDialog;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 

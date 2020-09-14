@@ -3,14 +3,15 @@ package com.xukui.upgrade.sample.dialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v4.widget.ContentLoadingProgressBar;
 import android.view.View;
 import android.widget.Button;
 
 import com.xukui.upgrade.sample.R;
 import com.xukui.library.upgrade.bean.UpgradeInfo;
 import com.xukui.library.upgrade.dialog.DownloadingDialog;
+
+import androidx.annotation.NonNull;
+import androidx.core.widget.ContentLoadingProgressBar;
 
 public class CustomDownloadingDialog extends Dialog implements DownloadingDialog {
 

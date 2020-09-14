@@ -3,12 +3,13 @@ package com.xukui.library.upgrade.dialog.impl;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.TextView;
 
 import com.xukui.library.upgrade.R;
 import com.xukui.library.upgrade.dialog.DownloadFailedDialog;
+
+import androidx.annotation.NonNull;
 
 public class DefaultDownloadFailedDialog extends Dialog implements DownloadFailedDialog {
 

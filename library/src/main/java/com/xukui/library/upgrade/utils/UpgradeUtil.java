@@ -9,7 +9,6 @@ import android.os.Build;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Looper;
-import android.support.annotation.StringRes;
 import android.text.TextUtils;
 
 import com.xukui.library.upgrade.callback.OnCheckDownloadListener;
@@ -20,6 +19,7 @@ import com.xukui.library.upgrade.UpgradeClient;
 import java.io.File;
 import java.security.MessageDigest;
 
+import androidx.annotation.StringRes;
 import okhttp3.Call;
 import okhttp3.Request;
 import okhttp3.Response;

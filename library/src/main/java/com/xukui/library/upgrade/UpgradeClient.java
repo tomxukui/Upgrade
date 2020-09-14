@@ -3,13 +3,14 @@ package com.xukui.library.upgrade;
 import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
-import android.support.annotation.Nullable;
 
 import com.xukui.library.upgrade.bean.UpgradeInfo;
 import com.xukui.library.upgrade.http.HttpClient;
 import com.xukui.library.upgrade.builder.DownloadBuilder;
 import com.xukui.library.upgrade.builder.RequestVersionBuilder;
 import com.xukui.library.upgrade.service.VersionService;
+
+import androidx.annotation.Nullable;
 
 public class UpgradeClient {
 

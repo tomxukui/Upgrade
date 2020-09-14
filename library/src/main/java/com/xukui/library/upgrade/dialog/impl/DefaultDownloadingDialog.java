@@ -2,8 +2,6 @@ package com.xukui.library.upgrade.dialog.impl;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.v4.widget.ContentLoadingProgressBar;
 import android.view.View;
 import android.widget.TextView;
 
@@ -11,6 +9,9 @@ import com.xukui.library.upgrade.R;
 import com.xukui.library.upgrade.dialog.DownloadingDialog;
 import com.xukui.library.upgrade.utils.ConvertUtil;
 import com.xukui.library.upgrade.utils.UpgradeUtil;
+
+import androidx.annotation.NonNull;
+import androidx.core.widget.ContentLoadingProgressBar;
 
 public class DefaultDownloadingDialog extends Dialog implements DownloadingDialog {
 

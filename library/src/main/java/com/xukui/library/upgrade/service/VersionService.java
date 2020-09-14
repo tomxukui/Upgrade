@@ -5,8 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.IBinder;
-import android.support.annotation.Nullable;
-import android.support.annotation.WorkerThread;
 
 import com.xukui.library.upgrade.callback.OnCheckDownloadListener;
 import com.xukui.library.upgrade.event.DownloadingProgressEvent;
@@ -25,6 +23,9 @@ import org.greenrobot.eventbus.ThreadMode;
 import java.io.File;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+
+import androidx.annotation.Nullable;
+import androidx.annotation.WorkerThread;
 
 public class VersionService extends Service {
 
