@@ -5,18 +5,8 @@ import com.xukui.library.upgrade.builder.RequestVersionBuilder;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.security.SecureRandom;
-import java.security.cert.CertificateException;
-import java.security.cert.X509Certificate;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
-
-import javax.net.ssl.HostnameVerifier;
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.SSLSession;
-import javax.net.ssl.SSLSocketFactory;
-import javax.net.ssl.TrustManager;
-import javax.net.ssl.X509TrustManager;
 
 import okhttp3.FormBody;
 import okhttp3.MediaType;
@@ -31,54 +21,11 @@ public class HttpClient {
     public static OkHttpClient getHttpClient() {
         if (client == null) {
             OkHttpClient.Builder builder = new OkHttpClient.Builder();
-            builder.sslSocketFactory(createSSLSocketFactory());
-            builder.hostnameVerifier(new TrustAllHostnameVerifier());
             builder.connectTimeout(15, TimeUnit.SECONDS);
             client = builder.build();
         }
 
         return client;
-    }
-
-    private static class TrustAllHostnameVerifier implements HostnameVerifier {
-
-        @Override
-        public boolean verify(String hostname, SSLSession session) {
-            return true;
-        }
-
-    }
-
-    private static SSLSocketFactory createSSLSocketFactory() {
-        SSLSocketFactory ssfFactory = null;
-
-        try {
-            SSLContext sc = SSLContext.getInstance("TLS");
-            sc.init(null, new TrustManager[]{new TrustAllCerts()}, new SecureRandom());
-            ssfFactory = sc.getSocketFactory();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return ssfFactory;
-    }
-
-    private static class TrustAllCerts implements X509TrustManager {
-
-        @Override
-        public void checkClientTrusted(X509Certificate[] chain, String authType) throws CertificateException {
-        }
-
-        @Override
-        public void checkServerTrusted(X509Certificate[] chain, String authType) throws CertificateException {
-        }
-
-        @Override
-        public X509Certificate[] getAcceptedIssuers() {
-            return new X509Certificate[0];
-        }
-
     }
 
     private static String assembleUrl(String url, HttpParams params) {

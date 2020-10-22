@@ -28,6 +28,6 @@ android {
 dependencies {
     implementation rootProject.ext.dependencies["appcompat"]
     implementation project(':library')
-    implementation 'com.squareup.okhttp3:okhttp:4.8.1'
+    implementation 'com.squareup.okhttp3:okhttp:4.9.0'
     implementation 'org.greenrobot:eventbus:3.1.1'
 }
