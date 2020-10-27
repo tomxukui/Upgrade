@@ -20,9 +20,10 @@ public class HttpClient {
 
     public static OkHttpClient getHttpClient() {
         if (client == null) {
-            OkHttpClient.Builder builder = new OkHttpClient.Builder();
-            builder.connectTimeout(15, TimeUnit.SECONDS);
-            client = builder.build();
+            client = new OkHttpClient.Builder()
+                    .connectTimeout(15, TimeUnit.SECONDS)
+                    .sslSocketFactory(new TLSSocketFactory(), TLSSocketFactory.DEFAULT_TRUST_MANAGERS)
+                    .build();
         }
 
         return client;
